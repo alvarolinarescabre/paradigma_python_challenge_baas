@@ -102,3 +102,18 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# vscode
+.vscode/
+
+# Virtual Enviroment
+env/
+
+# .swp
+*.swp
+
+# .ini
+*.ini
+
+# .sh
+*.sh

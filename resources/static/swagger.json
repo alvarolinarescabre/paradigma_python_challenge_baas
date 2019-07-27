@@ -1,0 +1,296 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "La Compañia Plateada - BaaS",
+		"version": "1.0.0",
+		"title": "La Compañia Plateada - BaaS",
+		"license": {
+			"name": "MIT"
+		},
+		"contact": {
+			"email": "alinares@paradigmadigital.com"
+		}
+	},
+	"basePath": "/v1",
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"tags": [
+		{
+			"name": "BaaS (Places + People)",
+			"description": "La Compañia Plateada - BaaS (Places + People)"
+		}
+	],
+	"paths": {
+		"/places": {
+			"get": {
+				"tags": [
+					"Places"
+				],
+				"summary": "Returns All Place with their People",
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Places"
+				],
+				"summary": "Create Place",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "name",
+						"required": true,
+						"description": "Place Name",
+						"schema": {
+							"$ref": "#/definitions/Place"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"409": {
+						"description": "Conflict"
+					}
+				}
+			}
+		},
+		"/places/{id}": {
+			"get": {
+				"tags": [
+					"Place By ID"
+				],
+				"summary": "Get Place request with given ID",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": "true",
+						"description": "Place Request id",
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "integer"
+						}
+					},
+					"404": {
+						"description": "Not Found."
+					}
+				}
+			},
+			"put": {
+				"tags": [
+					"Place By ID"
+				],
+				"summary": "Update Place",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"description": "Place ID",
+						"schema": {
+							"type": "integer"
+						}
+					},
+					{
+						"in": "body",
+						"name": "name",
+						"required": true,
+						"description": "Place Update Name",
+						"schema": {
+							"$ref": "#/definitions/Place"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"409": {
+						"description": "Conflict"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Place By ID"
+				],
+				"summary": "Delete Place request with given ID",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"description": "Place Request id",
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "integer"
+						}
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/people": {
+			"post": {
+				"tags": [
+					"People"
+				],
+				"summary": "Create Person",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "Person",
+						"required": true,
+						"description": "One Person",
+						"schema": {
+							"$ref": "#/definitions/Person"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"409": {
+						"description": "Conflict"
+					}
+				}
+			}
+		},
+		"/people/{id}": {
+			"put": {
+				"tags": [
+					"People By ID"
+				],
+				"summary": "Update Person",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"description": "Person ID",
+						"schema": {
+							"type": "integer"
+						}
+					},
+					{
+						"in": "body",
+						"name": "name",
+						"required": true,
+						"description": "Person Update",
+						"schema": {
+							"$ref": "#/definitions/Person"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created"
+					},
+					"404": {
+						"description": "Not Found"
+					},
+					"409": {
+						"description": "Conflict"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"People By ID"
+				],
+				"summary": "Delete Person request with given ID",
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"description": "Person Request id",
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "integer"
+						}
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Place": {
+			"properties": {
+				"name": {
+					"type": "string",
+					"enum": [ "Mesopotamia" ]
+				}
+			}
+		},
+		"Person": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"enum": [ "Julio Stack" ] 
+				},
+				"is_alive": {
+					"type": "integer",
+					"enum": [ 1 ]
+				},
+				"is_king": {
+					"type": "integer",
+					"enum": [ 0 ]
+				},
+				"place_id": {
+					"type": "integer",
+					"enum": [ 3 ]
+				}
+			}
+		}
+	}
+}
